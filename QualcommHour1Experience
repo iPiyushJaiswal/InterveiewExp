@@ -1,0 +1,102 @@
+count the number of set bit in non negative integer
+
+#include<bits/>
+
+O(32)
+log2(numb)
+
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+int count=0;
+int input=0;
+cout<<"Please provide input"<<endl;
+cin>>input;
+while(input)
+{
+if(input&1)
+count++;
+input>>=1;
+}
+cout<<count;
+return 0;
+}
+//6 ==>>110
+//method 2
+//n&(n-1)
+//6==110 
+//5==101
+
+4==100
+3==011
+0
+countt+;
+count++;
+2 
+
+int main()
+{
+int count=0;
+int input=0;
+cout<<"Please provide input"<<endl;
+cin>>input;
+while(input!=0 && (input&(input-1)))
+{
+count++;
+}
+cout<<count;
+return 0;
+}
+
+#include <bits/stdc++.h>
+using namespace std;
+// 1101110
+// int countZero=0;1111
+int main()
+{
+    string inputString="11011101111";
+    // optimized accroach sliding window
+    int size=inputString.size();
+    int count=0;
+    int i=-1;
+    int j=0;
+    int countZero=0;
+    int storePrevZeroIndex=-1;
+    while(j<size)
+    {
+        if(inputString[j]=='0' && countZero==0)
+        {
+            countZero++;
+            storePrevZeroIndex=j;
+        }
+        // case for second zero
+        else if(inputString[j]=='0' && countZero==1)
+        {
+            // 1101110
+            count=max(count,j-i);
+            i=storePrevZeroIndex+1;
+            countZero=1;
+            storePrevZeroIndex=j;
+        }
+        j++;
+    }
+    count=max(count,j-i);
+    cout<<count;
+    return 0;
+}
+
+
+Max k zero 
+
+
+Given a binary string (or array of 0s and 1s), you are allowed to flip exactly one 0 to 1. Find the length of the longest continuous sequence of 1s that can be obtained.
+Example:
+input - 11011101111
+output - 8
+ 
+input - 1111
+output - 4
+
+
+
