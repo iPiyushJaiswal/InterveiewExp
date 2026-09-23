@@ -1,0 +1,104 @@
+Design a touch driver which supporting detecting interrupt upon each touch. and then upon receiving it, it passes a SYNC event to userspace
+
+
+dts: node i saddres 
+iterrupt 
+touch @x1000{
+compatible ="touch,gt9896s"
+x_axiz=1080
+y_axiz=1080
+itr:<4344>
+clock=<ff>
+firmwar={efrg}
+reg={0x1000}
+offset(ox40)
+}
+
+driver part 
+module_init(my_init_fun)
+
+int __init my_init_func()
+{
+my_compatability_table
+.probe();
+};
+void remove ()
+{
+
+}
+"touch,gt9896s
+probing()->
+
+Method1:
+ko_order_table: gt9896s.../kerne6.18
+Methd2: 
+project_config: 
+Touch_ko:gt9896
+
+reg+offset
+//0x1040 =>> 0x 0001 0000 0100 0000
+
+irq_handler(int reg,int offset)
+{
+if(offset&0x40)
+{
+method1:
+top-half-> interrupt enable bit set, sleep, no mutex, 
+, bottom half -> i2c_reading()
+method2:
+devm_=>()
+}
+}
+
+adb
+input_event touch notification (759.567)
+
+
+---------------
+userspace -> kernel
+-> system_call
+
+kernel -> userspace 
+-> dma
+
+dma
+- direct mem access
+- communicate via cpu - later communication with dma controller
+-------
+
+2 threads
+- kernel thread
+	 func1 () {
+      writes (var, 0);
+   }
+- isr thread 
+		func2 () {
+    	reads (var);
+    }
+
+-- use spinlock
+
+----
+
+1100111
+pos - 2 (bit position)
+val - 0 (bool)
+>> 1100011
+
+#define replace_bit (num, pos, val)
+
+
+for position 2 = 
+if(val==0)
+num=&(~(1<<pos));
+else 
+num|=(1<<pos);
+
+
+
+
+
+
+
+
+
